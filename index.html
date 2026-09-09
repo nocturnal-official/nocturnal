@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOCTURNAL — After Dark</title>
+<meta name="description" content="NOCTURNAL — monochrome streetwear for the hours that belong to you.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{--bg:#050505;--panel:#0c0c0c;--text:#f4f4f0;--muted:#8f8f8a;--line:#242424;--white:#fff;--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
+a{color:inherit;text-decoration:none}button{font:inherit}
+.nav{position:fixed;z-index:20;top:0;left:0;right:0;height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(5,5,5,.72);backdrop-filter:blur(18px)}
+.brand{display:flex;align-items:center;gap:12px;font-family:"Space Grotesk";font-weight:700;letter-spacing:.28em;font-size:15px}
+.brand img{width:34px;height:34px;object-fit:cover;object-position:center;border-radius:50%;filter:grayscale(1)}
+.links{display:flex;gap:30px;font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:#bdbdb8}.links a{transition:.2s}.links a:hover{color:#fff}
+.nav-actions{display:flex;gap:10px;align-items:center}.icon-btn{border:1px solid var(--line);background:#090909;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;position:relative}.count{position:absolute;right:-2px;top:-2px;width:15px;height:15px;background:#fff;color:#000;border-radius:50%;font-size:9px;display:none;align-items:center;justify-content:center;font-weight:700}
+.hero{min-height:100vh;padding:120px 5vw 55px;display:grid;grid-template-columns:1.08fr .92fr;gap:4vw;align-items:center;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 72% 45%,#1b1b1b 0,transparent 30%),radial-gradient(circle at 30% 55%,#0e0e0e 0,transparent 38%);pointer-events:none}
+.hero-copy,.hero-art{position:relative;z-index:1}.eyebrow{text-transform:uppercase;letter-spacing:.35em;font-size:10px;color:#969690;margin-bottom:22px}
+.hero h1{font-family:"Space Grotesk";font-size:clamp(64px,11vw,170px);line-height:.78;letter-spacing:-.075em;margin:0 0 32px;font-weight:600}
+.hero h1 span{display:block}.hero h1 .outline{-webkit-text-stroke:1px #eee;color:transparent}
+.hero p{max-width:430px;color:#aaa;font-size:15px;line-height:1.8;margin-bottom:30px}
+.cta{display:inline-flex;align-items:center;gap:15px;padding:15px 22px;background:#f3f3ef;color:#050505;font-size:11px;text-transform:uppercase;letter-spacing:.18em;font-weight:700;border:0;cursor:pointer}.cta:after{content:"↗";font-size:16px}
+.hero-art{height:min(72vh,720px);display:flex;align-items:center;justify-content:center}
+.hero-art:before{content:"";position:absolute;width:75%;height:75%;border:1px solid #242424;border-radius:50%}
+.owl-hero{width:min(90%,620px);filter:contrast(1.08) grayscale(1);mix-blend-mode:screen;animation:float 7s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px) scale(1.015)}}
+.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:13px 0;color:#777;font-size:10px;letter-spacing:.35em;text-transform:uppercase}.ticker span{display:inline-block;margin-right:50px}
+.section{padding:110px 5vw}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:45px}.section-kicker{font-size:10px;color:#777;letter-spacing:.3em;text-transform:uppercase;margin-bottom:13px}.section h2{font-family:"Space Grotesk";font-size:clamp(38px,5vw,70px);letter-spacing:-.05em;margin:0}.section-note{color:#777;font-size:12px;max-width:250px;line-height:1.7;text-align:right}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:#0b0b0b;border:1px solid #171717;position:relative;overflow:hidden;transition:transform .35s var(--ease),border-color .35s}.card:hover{transform:translateY(-5px);border-color:#333}
+.card-img{height:540px;background:#101010;display:flex;align-items:center;justify-content:center;overflow:hidden}.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}.card:hover .card-img img{transform:scale(1.035)}
+.badge{position:absolute;left:16px;top:16px;border:1px solid #555;padding:7px 9px;font-size:9px;text-transform:uppercase;letter-spacing:.16em;background:rgba(0,0,0,.55)}
+.card-info{padding:18px 18px 20px;display:flex;justify-content:space-between;gap:10px}.card-title{font-weight:600;font-size:13px}.card-meta{font-size:10px;color:#777;text-transform:uppercase;letter-spacing:.13em;margin-top:7px}.price{font-family:"Space Grotesk";font-size:15px}
+.quick{position:absolute;bottom:88px;left:16px;right:16px;opacity:0;transform:translateY(10px);transition:.3s}.card:hover .quick{opacity:1;transform:none}.quick button{width:100%;padding:13px;border:0;background:#fff;color:#000;text-transform:uppercase;font-size:10px;letter-spacing:.16em;font-weight:700;cursor:pointer}
+.manifesto{min-height:78vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:7vw;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.manifesto-mark{font-family:"Space Grotesk";font-size:clamp(90px,15vw,210px);line-height:.72;letter-spacing:-.09em}.manifesto-mark div:nth-child(2){padding-left:14%;}.manifesto-mark div:nth-child(3){padding-left:29%}
+.manifesto-copy h3{font-family:"Space Grotesk";font-size:clamp(30px,4vw,55px);line-height:1.05;letter-spacing:-.04em;margin:0 0 25px}.manifesto-copy p{color:#999;line-height:1.9;max-width:480px;font-size:14px}
+.story{display:grid;grid-template-columns:.85fr 1.15fr;gap:7vw;align-items:center}.story-image{height:620px;background:#111;overflow:hidden}.story-image img{width:100%;height:100%;object-fit:cover;opacity:.9}.story-copy .big{font-family:"Space Grotesk";font-size:clamp(34px,4.5vw,68px);line-height:1;letter-spacing:-.06em;margin:15px 0 30px}.story-copy p{color:#999;line-height:1.9;max-width:470px}
+.footer{border-top:1px solid var(--line);padding:70px 5vw 30px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}.footer h4{font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:#777;margin:0 0 20px}.footer a{display:block;color:#aaa;font-size:12px;margin:0 0 12px}.footer-brand{font-family:"Space Grotesk";font-size:28px;letter-spacing:.15em}.footer small{grid-column:1/-1;border-top:1px solid #181818;padding-top:25px;color:#555;font-size:10px;letter-spacing:.08em}
+.newsletter{border-top:1px solid var(--line);padding:80px 5vw;display:flex;justify-content:space-between;gap:30px;align-items:end}.newsletter h2{font-family:"Space Grotesk";font-size:clamp(32px,4vw,58px);letter-spacing:-.05em;margin:0;max-width:580px}.form{display:flex;border-bottom:1px solid #555;min-width:min(400px,100%)}.form input{background:none;border:0;outline:0;color:#fff;padding:14px 0;flex:1;font-size:12px}.form button{background:none;border:0;color:#fff;text-transform:uppercase;letter-spacing:.16em;font-size:10px;cursor:pointer}
+.drawer{position:fixed;z-index:50;top:0;right:-430px;width:min(430px,100%);height:100vh;background:#0a0a0a;border-left:1px solid #292929;transition:right .35s var(--ease);padding:28px;display:flex;flex-direction:column}.drawer.open{right:0}.drawer-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;padding-bottom:20px}.drawer h3{font-family:"Space Grotesk";font-size:22px;margin:0}.close{background:none;border:0;color:#fff;font-size:25px;cursor:pointer}.cart-items{flex:1;overflow:auto;padding:18px 0}.cart-item{display:grid;grid-template-columns:75px 1fr auto;gap:13px;border-bottom:1px solid #1d1d1d;padding:14px 0}.cart-item img{width:75px;height:90px;object-fit:cover;filter:grayscale(1)}.cart-item h4{font-size:12px;margin:5px 0}.cart-item p{font-size:10px;color:#777;margin:0}.remove{background:none;border:0;color:#777;font-size:10px;cursor:pointer}.cart-total{border-top:1px solid #292929;padding-top:20px;display:flex;justify-content:space-between;font-family:"Space Grotesk";font-size:19px}.checkout{margin-top:16px;width:100%;padding:15px;background:#fff;border:0;color:#000;font-size:10px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;cursor:pointer}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:40;display:none}.overlay.show{display:block}
+.toast{position:fixed;z-index:60;bottom:25px;left:50%;transform:translate(-50%,20px);background:#fff;color:#000;padding:13px 18px;font-size:10px;text-transform:uppercase;letter-spacing:.15em;opacity:0;transition:.3s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:850px){.links{display:none}.hero{grid-template-columns:1fr;padding-top:125px}.hero-art{height:55vh;order:-1}.hero-copy{text-align:left}.products{grid-template-columns:1fr 1fr}.card-img{height:450px}.manifesto,.story{grid-template-columns:1fr}.manifesto{padding-top:80px;padding-bottom:80px}.manifesto-mark{font-size:120px}.story-image{height:450px}.newsletter{display:block}.form{margin-top:35px;min-width:0}.footer{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.products{grid-template-columns:1fr}.card-img{height:520px}.section{padding:80px 5vw}.section-head{display:block}.section-note{text-align:left;margin-top:15px}.footer{grid-template-columns:1fr 1fr}.hero h1{font-size:76px}.hero-art{height:48vh}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#"><img src="assets/logo.jpg" alt="Nocturnal eye logo"><span>NOCTURNAL</span></a>
+  <nav class="links"><a href="#shop">Shop</a><a href="#manifesto">Manifesto</a><a href="#story">About</a></nav>
+  <div class="nav-actions"><button class="icon-btn" onclick="scrollToShop()" aria-label="Search">⌕</button><button class="icon-btn" onclick="openCart()" aria-label="Cart">◌<span id="count" class="count">0</span></button></div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">Drop 01 / After Dark</div>
+    <h1><span>STAY</span><span class="outline">AWAKE.</span></h1>
+    <p>For the ones who come alive when the city goes quiet. Monochrome graphics. Heavy silhouettes. No unnecessary noise.</p>
+    <a class="cta" href="#shop">Enter the collection</a>
+  </div>
+  <div class="hero-art"><img class="owl-hero" src="assets/owl-black.jpg" alt="Nocturnal black owl long sleeve"></div>
+</section>
+
+<div class="ticker"><span>NOCTURNAL</span><span>AFTER DARK</span><span>MOVE DIFFERENT</span><span>DROP 01</span><span>NOCTURNAL</span><span>AFTER DARK</span></div>
+
+<section class="section" id="shop">
+  <div class="section-head"><div><div class="section-kicker">01 — The first drop</div><h2>THE NIGHT SHIFT</h2></div><div class="section-note">Three pieces. One language.<br>Black, white, and everything in between.</div></div>
+  <div class="products">
+    <article class="card">
+      <div class="card-img"><span class="badge">Drop 01</span><img src="assets/owl-black.jpg" alt="Owl long sleeve in black"></div>
+      <div class="quick"><button onclick="addToCart(0)">Add to bag</button></div>
+      <div class="card-info"><div><div class="card-title">Owl / Black</div><div class="card-meta">Heavyweight long sleeve</div></div><div class="price">₹2,499</div></div>
+    </article>
+    <article class="card">
+      <div class="card-img"><span class="badge">Drop 01</span><img src="assets/owl-white.jpg" alt="Owl long sleeve in white"></div>
+      <div class="quick"><button onclick="addToCart(1)">Add to bag</button></div>
+      <div class="card-info"><div><div class="card-title">Owl / White</div><div class="card-meta">Heavyweight long sleeve</div></div><div class="price">₹2,499</div></div>
+    </article>
+    <article class="card">
+      <div class="card-img"><span class="badge">Limited</span><img src="assets/spider-black.jpg" alt="Spider graphic long sleeve in black"></div>
+      <div class="quick"><button onclick="addToCart(2)">Add to bag</button></div>
+      <div class="card-info"><div><div class="card-title">Spider / Black</div><div class="card-meta">Graphic long sleeve</div></div><div class="price">₹2,699</div></div>
+    </article>
+  </div>
+</section>
+
+<section class="section manifesto" id="manifesto">
+  <div class="manifesto-mark"><div>NO</div><div>CT</div><div>RN</div></div>
+  <div class="manifesto-copy"><div class="section-kicker">02 — Manifesto</div><h3>THE NIGHT ISN'T EMPTY.<br>IT'S YOURS.</h3><p>NOCTURNAL is built around the hours outside the usual schedule. Quiet streets. Loud thoughts. The confidence to make your own rhythm. We keep the palette restrained so the attitude does the talking.</p></div>
+</section>
+
+<section class="section story" id="story">
+  <div class="story-image"><img src="assets/owl-white.jpg" alt="Nocturnal owl graphic"></div>
+  <div class="story-copy"><div class="section-kicker">03 — The symbol</div><div class="big">WATCH<br>THE DARK.</div><p>The owl is our first mark: alert, silent, and impossible to rush. A reminder to stay observant when everyone else is looking away.</p><br><a class="cta" href="#shop">Shop Drop 01</a></div>
+</section>
+
+<section class="newsletter">
+  <div><div class="section-kicker">04 — Stay in the loop</div><h2>FIRST ACCESS.<br>NO SPAM. EVER.</h2></div>
+  <form class="form" onsubmit="subscribe(event)"><input id="email" type="email" placeholder="Your email address" required><button>Join</button></form>
+</section>
+</main>
+
+<footer class="footer">
+  <div><div class="footer-brand">NOCTURNAL</div><p style="color:#777;font-size:11px;line-height:1.8;max-width:260px">Independent streetwear for the hours that belong to you.</p></div>
+  <div><h4>Shop</h4><a href="#shop">Drop 01</a><a href="#shop">All pieces</a></div>
+  <div><h4>Info</h4><a href="#manifesto">Manifesto</a><a href="#story">About</a><a href="#">Shipping</a><a href="#">Returns</a></div>
+  <div><h4>Social</h4><a href="#">Instagram</a><a href="#">Pinterest</a><a href="#">Contact</a></div>
+  <small>© 2026 NOCTURNAL. ALL RIGHTS RESERVED.</small>
+</footer>
+
+<div id="overlay" class="overlay" onclick="closeCart()"></div>
+<aside id="drawer" class="drawer">
+  <div class="drawer-head"><h3>YOUR BAG</h3><button class="close" onclick="closeCart()">×</button></div>
+  <div id="cartItems" class="cart-items"></div>
+  <div class="cart-total"><span>TOTAL</span><span id="total">₹0</span></div>
+  <button class="checkout" onclick="checkout()">Checkout</button>
+</aside>
+<div id="toast" class="toast"></div>
+
+<script>
+const products=[
+ {name:'Owl / Black',price:2499,img:'assets/owl-black.jpg'},
+ {name:'Owl / White',price:2499,img:'assets/owl-white.jpg'},
+ {name:'Spider / Black',price:2699,img:'assets/spider-black.jpg'}
+];
+let cart=[];
+function scrollToShop(){document.querySelector('#shop').scrollIntoView({behavior:'smooth'})}
+function openCart(){document.querySelector('#drawer').classList.add('open');document.querySelector('#overlay').classList.add('show');renderCart()}
+function closeCart(){document.querySelector('#drawer').classList.remove('open');document.querySelector('#overlay').classList.remove('show')}
+function addToCart(i){cart.push(products[i]);renderCart();openCart();toast('Added to bag')}
+function removeItem(i){cart.splice(i,1);renderCart()}
+function renderCart(){
+ const el=document.querySelector('#cartItems'); const count=document.querySelector('#count');
+ count.textContent=cart.length; count.style.display=cart.length?'flex':'none';
+ if(!cart.length){el.innerHTML='<div style="padding:50px 0;color:#666;font-size:11px;text-transform:uppercase;letter-spacing:.15em;text-align:center">Your bag is empty.</div>'}
+ else el.innerHTML=cart.map((p,i)=>`<div class="cart-item"><img src="${p.img}"><div><h4>${p.name}</h4><p>₹${p.price.toLocaleString('en-IN')}</p></div><button class="remove" onclick="removeItem(${i})">REMOVE</button></div>`).join('');
+ document.querySelector('#total').textContent='₹'+cart.reduce((s,p)=>s+p.price,0).toLocaleString('en-IN');
+}
+function toast(msg){const t=document.querySelector('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+function subscribe(e){e.preventDefault();const email=document.querySelector('#email');toast('You're on the list.');email.value=''}
+function checkout(){if(!cart.length){toast('Your bag is empty');return}toast('Checkout is ready for integration');}
+renderCart();
+</script>
+</body>
+</html>
