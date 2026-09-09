@@ -30,7 +30,13 @@ a{color:inherit;text-decoration:none}button{font:inherit}
 .section{padding:110px 5vw}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:45px}.section-kicker{font-size:10px;color:#777;letter-spacing:.3em;text-transform:uppercase;margin-bottom:13px}.section h2{font-family:"Space Grotesk";font-size:clamp(38px,5vw,70px);letter-spacing:-.05em;margin:0}.section-note{color:#777;font-size:12px;max-width:250px;line-height:1.7;text-align:right}
 .products{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .card{background:#0b0b0b;border:1px solid #171717;position:relative;overflow:hidden;transition:transform .35s var(--ease),border-color .35s}.card:hover{transform:translateY(-5px);border-color:#333}
-.card-img{height:540px;background:#101010;display:flex;align-items:center;justify-content:center;overflow:hidden}.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}.card:hover .card-img img{transform:scale(1.035)}
+.card-img{height:540px;background:#101010;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:opacity .45s var(--ease),transform .7s var(--ease);position:absolute;inset:0}
+.card-img .back-img{opacity:0}
+.card:hover .card-img .front-img{opacity:0;transform:scale(1.035)}
+.card:hover .card-img .back-img{opacity:1;transform:scale(1.035)}
+.card .hover-hint{position:absolute;right:14px;bottom:14px;z-index:3;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#aaa;background:rgba(0,0,0,.6);padding:7px 8px;border:1px solid #333;opacity:.85;transition:.25s}
+.card:hover .hover-hint{opacity:0}
 .badge{position:absolute;left:16px;top:16px;border:1px solid #555;padding:7px 9px;font-size:9px;text-transform:uppercase;letter-spacing:.16em;background:rgba(0,0,0,.55)}
 .card-info{padding:18px 18px 20px;display:flex;justify-content:space-between;gap:10px}.card-title{font-weight:600;font-size:13px}.card-meta{font-size:10px;color:#777;text-transform:uppercase;letter-spacing:.13em;margin-top:7px}.price{font-family:"Space Grotesk";font-size:15px}
 .quick{position:absolute;bottom:88px;left:16px;right:16px;opacity:0;transform:translateY(10px);transition:.3s}.card:hover .quick{opacity:1;transform:none}.quick button{width:100%;padding:13px;border:0;background:#fff;color:#000;text-transform:uppercase;font-size:10px;letter-spacing:.16em;font-weight:700;cursor:pointer}
@@ -62,7 +68,7 @@ a{color:inherit;text-decoration:none}button{font:inherit}
     <p>For the ones who come alive when the city goes quiet. Monochrome graphics. Heavy silhouettes. No unnecessary noise.</p>
     <a class="cta" href="#shop">Enter the collection</a>
   </div>
-  <div class="hero-art"><img class="owl-hero" src="assets/owl-black.jpg" alt="Nocturnal black owl long sleeve"></div>
+  <div class="hero-art"><img class="owl-hero" src="assets/owl-black-front.jpg" alt="Nocturnal black owl long sleeve"></div>
 </section>
 
 <div class="ticker"><span>NOCTURNAL</span><span>AFTER DARK</span><span>MOVE DIFFERENT</span><span>DROP 01</span><span>NOCTURNAL</span><span>AFTER DARK</span></div>
@@ -71,17 +77,17 @@ a{color:inherit;text-decoration:none}button{font:inherit}
   <div class="section-head"><div><div class="section-kicker">01 — The first drop</div><h2>THE NIGHT SHIFT</h2></div><div class="section-note"><br>Black, white, and everything in between.</div></div>
   <div class="products">
     <article class="card">
-      <div class="card-img"><span class="badge">Drop 01</span><img src="assets/owl-black.jpg" alt="Owl long sleeve in black"></div>
+      <div class="card-img"><span class="badge">Drop 01</span><img class="front-img" src="assets/owl-black-front.jpg" alt="Owl long sleeve in black, front"><img class="back-img" src="assets/owl-black-back.jpg" alt="Owl long sleeve in black, back"><span class="hover-hint">Hover for back</span></div>
       <div class="quick"><button onclick="addToCart(0)">Add to bag</button></div>
       <div class="card-info"><div><div class="card-title">Signature (Black & White)</div><div class="card-meta">Heavyweight long sleeve</div></div><div class="price">₹2,499</div></div>
     </article>
     <article class="card">
-      <div class="card-img"><span class="badge">Drop 01</span><img src="assets/owl-white.jpg" alt="Owl long sleeve in white"></div>
+      <div class="card-img"><span class="badge">Drop 01</span><img class="front-img" src="assets/owl-white-front.jpg" alt="Owl long sleeve in white, front"><img class="back-img" src="assets/owl-white-back.jpg" alt="Owl long sleeve in white, back"><span class="hover-hint">Hover for back</span></div>
       <div class="quick"><button onclick="addToCart(1)">Add to bag</button></div>
       <div class="card-info"><div><div class="card-title">Signature (White & Blue)</div><div class="card-meta">Heavyweight long sleeve</div></div><div class="price">₹2,499</div></div>
     </article>
     <article class="card">
-      <div class="card-img"><span class="badge">Limited</span><img src="assets/spider-black.jpg" alt="Spider graphic long sleeve in black"></div>
+      <div class="card-img"><span class="badge">Limited</span><img class="front-img" src="assets/spider-black-front.jpg" alt="The Arachnid long sleeve in black, front"><img class="back-img" src="assets/spider-black-back.jpg" alt="The Arachnid long sleeve in black, back"><span class="hover-hint">Hover for back</span></div>
       <div class="quick"><button onclick="addToCart(2)">Add to bag</button></div>
       <div class="card-info"><div><div class="card-title">The Arachnid</div><div class="card-meta">Graphic long sleeve</div></div><div class="price">₹2,699</div></div>
     </article>
@@ -94,7 +100,7 @@ a{color:inherit;text-decoration:none}button{font:inherit}
 </section>
 
 <section class="section story" id="story">
-  <div class="story-image"><img src="assets/owl-white.jpg" alt="Nocturnal owl graphic"></div>
+  <div class="story-image"><img src="assets/owl-white-front.jpg" alt="Nocturnal owl graphic"></div>
   <div class="story-copy"><div class="section-kicker">03 — The symbol</div><div class="big">WATCH<br>THE DARK.</div><p>The owl is our first mark: alert, silent, and impossible to rush. A reminder to stay observant when everyone else is looking away.</p><br><a class="cta" href="#shop">Shop Drop 01</a></div>
 </section>
 
@@ -123,9 +129,9 @@ a{color:inherit;text-decoration:none}button{font:inherit}
 
 <script>
 const products=[
- {name:'Owl / Black',price:2499,img:'assets/owl-black.jpg'},
- {name:'Owl / White',price:2499,img:'assets/owl-white.jpg'},
- {name:'Spider / Black',price:2699,img:'assets/spider-black.jpg'}
+ {name:'Owl / Black',price:2499,img:'assets/owl-black-front.jpg'},
+ {name:'Owl / White',price:2499,img:'assets/owl-white-front.jpg'},
+ {name:'The Arachnid / Black',price:2699,img:'assets/spider-black-front.jpg'}
 ];
 let cart=[];
 function scrollToShop(){document.querySelector('#shop').scrollIntoView({behavior:'smooth'})}
