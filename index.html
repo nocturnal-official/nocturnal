@@ -162,4 +162,16 @@ cart=[];renderCart();closeCheckout();closeCart();toast(emailSent?'Order sent to 
 function subscribe(e){e.preventDefault();document.querySelector('#email').value='';toast("You're on the list")}
 function toast(msg){const t=document.querySelector('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),2200)}
 renderProducts();renderCart();
-</script></body></html>
+</script>
+<audio id="bgAudio" src="assets/Midnight_Curfew.mp3" loop preload="auto"></audio>
+<script>
+(function(){
+  var a=document.getElementById('bgAudio');
+  function tryPlay(){a.play().catch(function(){});}
+  tryPlay();
+  ['click','touchstart','keydown'].forEach(function(ev){
+    document.addEventListener(ev,function h(){tryPlay();document.removeEventListener(ev,h);},{once:true});
+  });
+})();
+</script>
+</body></html>
