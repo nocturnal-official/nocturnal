@@ -25,10 +25,14 @@
 .modal{display:none;position:fixed;inset:0;z-index:70;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.modal-box{width:min(520px,100%);background:#0b0b0b;border:1px solid #333;padding:28px}.modal-box h3{font:500 28px 'Space Grotesk';margin:0 0 8px}.modal-box p{color:#888;font-size:11px;line-height:1.7}.checkout-form{display:grid;gap:12px;margin-top:20px}.checkout-form input,.checkout-form textarea{width:100%;background:#111;border:1px solid #282828;color:#fff;padding:12px;outline:0;font-size:11px}.checkout-form textarea{min-height:80px;resize:vertical}.modal-actions{display:flex;gap:10px;margin-top:5px}.modal-actions button{flex:1;padding:13px;border:0;text-transform:uppercase;letter-spacing:.14em;font-size:9px;font-weight:700;cursor:pointer}.cancel{background:#171717;color:#fff}.submit{background:#fff;color:#000}
 @media(max-width:850px){.links{display:none}.hero{grid-template-columns:1fr}.hero-art{order:-1;height:52vh}.products{grid-template-columns:1fr 1fr}.product-media{height:470px}.manifesto,.story{grid-template-columns:1fr}.newsletter{display:block}.form{margin-top:30px}.footer{grid-template-columns:1fr 1fr}}
 @media(max-width:540px){.products{grid-template-columns:1fr}.product-media{height:520px}.section{padding:78px 5vw}.section-head{display:block}.note{text-align:left;margin-top:15px}.footer{grid-template-columns:1fr 1fr}.hero h1{font-size:78px}.hero-art{height:46vh}}
+/* Search */
+.search-panel{position:fixed;z-index:29;top:74px;left:0;right:0;background:rgba(5,5,5,.96);backdrop-filter:blur(16px);border-bottom:1px solid #1d1d1d;padding:0 4vw;transform:translateY(-104%);opacity:0;pointer-events:none;transition:transform .35s var(--ease),opacity .25s var(--ease)}.search-panel.open{transform:translateY(0);opacity:1;pointer-events:auto}.search-inner{display:flex;align-items:center;gap:14px;height:64px}.search-inner .s-icon{color:#5f5f5f;font-size:19px}#searchInput{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font-size:14px;padding:10px 0;-webkit-appearance:none}#searchInput::placeholder{color:#555}#searchInput::-webkit-search-cancel-button{-webkit-appearance:none}.search-count{color:#777;font-size:9px;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}.search-close{background:none;border:0;color:#888;font-size:25px;line-height:1;cursor:pointer;padding:0 2px}.search-close:hover{color:#fff}.card.hit{border-color:#3b3b3b}.no-results{display:none;padding:80px 0;text-align:center;color:#666;font-size:11px;letter-spacing:.18em;text-transform:uppercase;line-height:2.2}.no-results.show{display:block}.no-results button{margin-top:16px;background:none;border:1px solid #2c2c2c;color:#aaa;padding:11px 18px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}.no-results button:hover{border-color:#555;color:#fff}
+@media(max-width:540px){.search-inner{height:58px;gap:10px}#searchInput{font-size:13px}}
 </style>
 </head>
 <body>
-<header class="nav"><a class="brand" href="#"><img src="assets/logo.jpg" alt="NOCTURNAL"><span>NOCTURNAL</span></a><nav class="links"><a href="#shop">Shop</a><a href="#manifesto">Manifesto</a><a href="#story">About</a></nav><div class="actions"><button class="icon-btn" onclick="document.querySelector('#shop').scrollIntoView({behavior:'smooth'})">⌕</button><button class="icon-btn" onclick="openCart()">◌<span id="count" class="count">0</span></button></div></header>
+<header class="nav"><a class="brand" href="#"><img src="assets/logo.jpg" alt="NOCTURNAL"><span>NOCTURNAL</span></a><nav class="links"><a href="#shop">Shop</a><a href="#manifesto">Manifesto</a><a href="#story">About</a></nav><div class="actions"><button class="icon-btn" aria-label="Search" onclick="toggleSearch()">⌕</button><button class="icon-btn" onclick="openCart()">◌<span id="count" class="count">0</span></button></div></header>
+<div id="searchPanel" class="search-panel"><div class="search-inner"><span class="s-icon">⌕</span><input id="searchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Search — try &quot;zoro&quot;, &quot;black&quot;, &quot;f1&quot;, &quot;hamilton&quot;"><span id="searchCount" class="search-count"></span><button class="search-close" aria-label="Close search" onclick="closeSearch()">×</button></div></div>
 <main>
 <section class="hero"><div><div class="eyebrow">Drop 01 / After Dark</div><h1>STAY<br><span class="outline">AWAKE.</span></h1><p>For the ones who come alive when the city goes quiet. Heavyweight graphics, clean silhouettes, and no unnecessary noise.</p><a class="cta" href="#shop">Enter the collection ↗</a></div><div class="hero-art"><img src="assets/owl-black-front.jpeg" alt="NOCTURNAL Owl Black"></div></section>
 <div class="ticker"><span>NOCTURNAL</span><span>265 GSM</span><span>DROP 01</span><span>AFTER DARK</span><span>NOCTURNAL</span><span>265 GSM</span></div>
@@ -55,6 +59,7 @@
     <div class="drop-divider-line"></div>
   </div>
   <div id="products-f1" class="products"></div>
+  <div id="noResults" class="no-results">No pieces match that search.<br><button onclick="clearSearch()">Clear search</button></div>
 </section>
 <section class="section manifesto" id="manifesto"><div class="manifesto-mark"><div>NO</div><div>CT</div><div>RN</div></div><div class="manifesto-copy"><div class="kicker">02 — Manifesto</div><h3>THE NIGHT ISN'T EMPTY.<br>IT'S YOURS.</h3><p>NOCTURNAL is built around the hours outside the usual schedule. Quiet streets. Loud thoughts. The confidence to make your own rhythm.</p></div></section>
 <section class="section story" id="story"><div class="story-image"><img src="assets/zoro-green-back.jpg" alt="NOCTURNAL Three Blades"></div><div><div class="kicker">03 — The symbol</div><div class="big">BUILT FOR<br>THE LATE HOURS.</div><p>265 GSM heavyweight cotton in a structured half-sleeve fit. Designed to feel substantial without shouting for attention. Pick your colour. Wear it your way.</p><a class="cta" href="#shop">Shop the collection ↗</a></div></section>
@@ -201,7 +206,91 @@ try{const formData=new FormData();formData.append('_subject',`NOCTURNAL Order �
 cart=[];renderCart();closeCheckout();closeCart();toast(emailSent?'Order sent to WhatsApp + email':'Order sent to WhatsApp');}
 function subscribe(e){e.preventDefault();document.querySelector('#email').value='';toast("You're on the list")}
 function toast(msg){const t=document.querySelector('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),2200)}
-renderProducts();renderCart();
+
+// --- SEARCH ---------------------------------------------------------------
+const DROP_SEARCH_NAMES={drop01:'drop 01 after dark',onepiece:'drop 02 one piece',f1:'drop 03 f1 formula one racing'};
+// extra words shoppers might type that aren't in the product name - add freely
+const SEARCH_ALIASES={'Signature Owl':'owl bird night','The Arachnid':'spider arachnid web','Three Blades':'zoro swords katana blades','Flame':'sanji flame fire cook','Dog':'chopper reindeer','Girl':'nami','Boy':'usopp','Man':'luffy straw hat','Hamilton':'lewis','Verstappen':'max','Leclerc':'charles','Norris':'lando','Sainz':'carlos','Russell':'george','Piastri':'oscar','Perez':'sergio checo perez','Full Throttle':'speed minds throttle','Drive Push':'drive push repeat','Race Passion':'race people passion','Better Versions':'better versions speed'};
+const SEARCH_EXTRA=' tee t-shirt tshirt shirt 265 gsm heavyweight half sleeve 1500 ₹1500 nocturnal';
+
+function variantText(p){
+  return [p.name,p.variant,p.group,p.id.replace(/-/g,' '),DROP_SEARCH_NAMES[p.drop]||''].join(' ').toLowerCase();
+}
+function tokensOf(raw){
+  const q=(raw||'').trim().toLowerCase();
+  return q?q.split(/\s+/).filter(Boolean):[];
+}
+function applySearch(raw){
+  const tokens=tokensOf(raw);
+  let visible=0;
+  document.querySelectorAll('.card').forEach(card=>{
+    const group=card.dataset.group;
+    const vars=groupVariants(group);
+    const hay=vars.map(variantText).join(' ')+' '+(SEARCH_ALIASES[group]||'').toLowerCase()+SEARCH_EXTRA;
+    const match=!tokens.length||tokens.every(t=>hay.includes(t));
+    card.style.display=match?'':'none';
+    card.classList.toggle('hit',match&&tokens.length>0);
+    if(!match)return;
+    visible++;
+    if(tokens.length){
+      // if a specific colourway matches the query, show that one
+      const v=vars.find(p=>tokens.every(t=>variantText(p).includes(t)));
+      if(v&&card.dataset.selected!==v.id)selectVariant(group,v.id);
+    }
+  });
+  // hide a drop's grid + divider when nothing in it survives the filter
+  Object.values(DROP_TARGETS).forEach(sel=>{
+    const grid=document.querySelector(sel);
+    if(!grid)return;
+    const any=[...grid.querySelectorAll('.card')].some(c=>c.style.display!=='none');
+    grid.style.display=any?'':'none';
+    const divider=grid.previousElementSibling;
+    if(divider&&divider.classList.contains('drop-divider'))divider.style.display=any?'':'none';
+  });
+  const nr=document.querySelector('#noResults');
+  if(nr)nr.classList.toggle('show',tokens.length>0&&visible===0);
+  const c=document.querySelector('#searchCount');
+  if(c)c.textContent=tokens.length?(visible?visible+(visible===1?' piece':' pieces'):'No match'):'';
+}
+function openSearch(){
+  document.querySelector('#searchPanel').classList.add('open');
+  setTimeout(()=>document.querySelector('#searchInput').focus(),140);
+}
+function closeSearch(){
+  document.querySelector('#searchPanel').classList.remove('open');
+  const i=document.querySelector('#searchInput');
+  i.value='';i.blur();applySearch('');
+}
+function toggleSearch(){
+  document.querySelector('#searchPanel').classList.contains('open')?closeSearch():openSearch();
+}
+function clearSearch(){
+  const i=document.querySelector('#searchInput');
+  i.value='';applySearch('');i.focus();
+}
+function scrollToShop(){
+  const shop=document.querySelector('#shop');
+  const top=shop.getBoundingClientRect().top;
+  if(top>220||top<-500)window.scrollTo({top:shop.offsetTop-120,behavior:'smooth'});
+}
+function initSearch(){
+  const input=document.querySelector('#searchInput');
+  input.addEventListener('input',e=>{applySearch(e.target.value);if(e.target.value.trim())scrollToShop();});
+  input.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){closeSearch();return}
+    if(e.key==='Enter'){
+      e.preventDefault();
+      const first=[...document.querySelectorAll('.card')].find(c=>c.style.display!=='none');
+      if(first)first.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+  });
+  document.addEventListener('keydown',e=>{
+    const typing=/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
+    if(e.key==='/'&&!typing){e.preventDefault();openSearch()}
+    if(e.key==='Escape')closeSearch();
+  });
+}
+renderProducts();renderCart();initSearch();
 </script>
 <audio id="bgAudio" src="assets/Midnight_Curfew.mp3" loop preload="auto"></audio>
 <script>
