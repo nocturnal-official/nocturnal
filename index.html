@@ -49,12 +49,18 @@
     <div class="drop-divider-line"></div>
   </div>
   <div id="products-onepiece" class="products"></div>
+  <div class="drop-divider" style="margin-top:80px">
+    <div class="drop-divider-line"></div>
+    <div class="drop-label">Drop 03 — <strong>F1</strong></div>
+    <div class="drop-divider-line"></div>
+  </div>
+  <div id="products-f1" class="products"></div>
 </section>
 <section class="section manifesto" id="manifesto"><div class="manifesto-mark"><div>NO</div><div>CT</div><div>RN</div></div><div class="manifesto-copy"><div class="kicker">02 — Manifesto</div><h3>THE NIGHT ISN'T EMPTY.<br>IT'S YOURS.</h3><p>NOCTURNAL is built around the hours outside the usual schedule. Quiet streets. Loud thoughts. The confidence to make your own rhythm.</p></div></section>
 <section class="section story" id="story"><div class="story-image"><img src="assets/zoro-green-back.jpg" alt="NOCTURNAL Three Blades"></div><div><div class="kicker">03 — The symbol</div><div class="big">BUILT FOR<br>THE LATE HOURS.</div><p>265 GSM heavyweight cotton in a structured half-sleeve fit. Designed to feel substantial without shouting for attention. Pick your colour. Wear it your way.</p><a class="cta" href="#shop">Shop the collection ↗</a></div></section>
 <section class="newsletter"><div><div class="kicker">04 — Stay in the loop</div><h2>FIRST ACCESS.<br>NO SPAM. EVER.</h2></div><form class="form" onsubmit="subscribe(event)"><input id="email" type="email" placeholder="Your email address" required><button>Join</button></form></section>
 </main>
-<footer class="footer"><div><div class="footer-brand">NOCTURNAL</div><p style="color:#777;font-size:11px;line-height:1.8;max-width:260px">Independent streetwear for the hours that belong to you.</p></div><div><h4>Shop</h4><a href="#shop">Drop 01 — After Dark</a><a href="#shop">Drop 02 — One Piece</a><a href="#shop">All pieces</a></div><div><h4>Info</h4><a href="#manifesto">Manifesto</a><a href="#story">About</a><a href="#">Shipping</a><a href="#">Returns</a></div><div><h4>Social</h4><a href="#">Instagram</a><a href="#">Contact</a></div><small>© 2026 NOCTURNAL. ALL RIGHTS RESERVED.</small></footer>
+<footer class="footer"><div><div class="footer-brand">NOCTURNAL</div><p style="color:#777;font-size:11px;line-height:1.8;max-width:260px">Independent streetwear for the hours that belong to you.</p></div><div><h4>Shop</h4><a href="#shop">Drop 01 — After Dark</a><a href="#shop">Drop 02 — One Piece</a><a href="#shop">Drop 03 — F1</a><a href="#shop">All pieces</a></div><div><h4>Info</h4><a href="#manifesto">Manifesto</a><a href="#story">About</a><a href="#">Shipping</a><a href="#">Returns</a></div><div><h4>Social</h4><a href="#">Instagram</a><a href="#">Contact</a></div><small>© 2026 NOCTURNAL. ALL RIGHTS RESERVED.</small></footer>
 <div id="overlay" class="overlay" onclick="closeCart();closeCheckout()"></div><aside id="drawer" class="drawer"><div class="drawer-head"><h3>YOUR BAG</h3><button class="close" onclick="closeCart()">×</button></div><div id="cartItems" class="cart-items"></div><div class="cart-footer"><div class="total"><span>TOTAL</span><span id="total">₹0</span></div><button class="checkout" onclick="openCheckout()">Checkout</button></div></aside>
 <div id="checkoutModal" class="modal"><div class="modal-box"><div style="display:flex;justify-content:space-between;gap:20px"><div><h3>CHECKOUT</h3><p>Your order will be prepared for WhatsApp confirmation.</p></div><button class="close" onclick="closeCheckout()">×</button></div><form class="checkout-form" onsubmit="placeOrder(event)"><input id="customerName" required placeholder="Full name"><input id="customerPhone" required placeholder="WhatsApp number"><input id="customerAddress" required placeholder="Delivery address"><textarea id="customerNotes" placeholder="Order notes (optional)"></textarea><div class="modal-actions"><button type="button" class="cancel" onclick="closeCheckout()">Cancel</button><button type="submit" class="submit">Send order on WhatsApp</button></div></form></div></div>
 <div id="toast" class="toast"></div>
@@ -85,6 +91,24 @@ const products=[
   {id:'boy-green',name:'Usopp Tee',variant:'Military Green',price:1500,front:'assets/boy-military-green-front.jpeg',back:'assets/boy-military-green-back.jpeg',group:'Boy',color:'#4b5320',drop:'onepiece'},
   {id:'man-red',name:'Luffy Tee',variant:'Red',price:1500,front:'assets/man-red-front.jpeg',back:'assets/man-red-back.jpeg',group:'Man',color:'#b5121b',drop:'onepiece'},
   {id:'man-black',name:'Luffy Tee',variant:'Black',price:1500,front:'assets/man-black-front.jpeg',back:'assets/man-black-back.jpeg',group:'Man',color:'#090909',drop:'onepiece'},
+  // ── F1 drop ───────────────────────────────────────────────────────────────
+  // Driver tees. Hamilton and Verstappen each have two colourways, so they
+  // share a group key and appear as one card with swatches.
+  {id:'hamilton-black',   name:'Hamilton Tee',   variant:'Black',  price:1500, front:'assets/hamilton-black-front.png',      back:'assets/hamilton-black-back.png',      group:'Hamilton',   color:'#1a1a1a', drop:'f1'},
+  {id:'hamilton-cream',   name:'Hamilton Tee',   variant:'Cream',  price:1500, front:'assets/hamilton-cream-front.png',      back:'assets/hamilton-cream-back.png',      group:'Hamilton',   color:'#e8e4dc', drop:'f1'},
+  {id:'verstappen-navy',  name:'Verstappen Tee', variant:'Navy',   price:1500, front:'assets/verstappen-navy-front.png',     back:'assets/verstappen-navy-back.png',     group:'Verstappen', color:'#1e2e4a', drop:'f1'},
+  {id:'verstappen-black', name:'Verstappen Tee', variant:'Black',  price:1500, front:'assets/verstappen-black-front.png',    back:'assets/verstappen-black-back.png',    group:'Verstappen', color:'#1a1a1a', drop:'f1'},
+  {id:'leclerc-red',      name:'Leclerc Tee',    variant:'Red',    price:1500, front:'assets/leclerc-red-front.png',         back:'assets/leclerc-red-back.png',         group:'Leclerc',    color:'#7d1a1a', drop:'f1'},
+  {id:'norris-cream',     name:'Norris Tee',     variant:'Cream',  price:1500, front:'assets/norris-cream-front.png',        back:'assets/norris-cream-back.png',        group:'Norris',     color:'#e8e4dc', drop:'f1'},
+  {id:'sainz-red',        name:'Sainz Tee',      variant:'Red',    price:1500, front:'assets/sainz-red-front.png',           back:'assets/sainz-red-back.png',           group:'Sainz',      color:'#7d1a1a', drop:'f1'},
+  {id:'russell-black',    name:'Russell Tee',    variant:'Black',  price:1500, front:'assets/russell-black-front.png',       back:'assets/russell-black-back.png',       group:'Russell',    color:'#1a1a1a', drop:'f1'},
+  {id:'piastri-black',    name:'Piastri Tee',    variant:'Black',  price:1500, front:'assets/piastri-black-front.png',       back:'assets/piastri-black-back.png',       group:'Piastri',    color:'#1a1a1a', drop:'f1'},
+  {id:'perez-navy',       name:'Pérez Tee',      variant:'Navy',   price:1500, front:'assets/perez-navy-front.png',          back:'assets/perez-navy-back.png',          group:'Perez',      color:'#1e2e4a', drop:'f1'},
+  // Non-driver graphics
+  {id:'f1-throttle-black',name:'Full Throttle Tee',   variant:'Black', price:1500, front:'assets/f1-speedminds-black-front.png', back:'assets/f1-speedminds-black-back.png', group:'Full Throttle', color:'#1a1a1a', drop:'f1'},
+  {id:'f1-classic-cream', name:'Drive Push Repeat Tee',variant:'Cream',price:1500, front:'assets/f1-classic-cream-front.png',    back:'assets/f1-classic-cream-back.png',    group:'Drive Push',    color:'#e8e4dc', drop:'f1'},
+  {id:'f1-passion-red',   name:'Race People Passion Tee',variant:'Red',price:1500, front:'assets/f1-passion-red-front.png',      back:'assets/f1-passion-red-back.png',      group:'Race Passion',  color:'#7d1a1a', drop:'f1'},
+  {id:'f1-speed-green',   name:'Better Versions Tee', variant:'Green',price:1500, front:'assets/f1-speed-green-front.png',      back:'assets/f1-speed-green-back.png',      group:'Better Versions',color:'#2a3a2e',drop:'f1'},
 ];
 
 let cart=[];
@@ -94,16 +118,22 @@ function groupVariants(group){return products.filter(p=>p.group===group)}
 function buildCard(group){
   const vars=groupVariants(group);
   const p=vars[0];
-  const badgeLabel=p.drop==='onepiece'?'One Piece':'Drop 01';
+  const badgeLabel=DROP_LABELS[p.drop]||'Drop 01';
     const cardId = `card-${group.replace(/\s+/g,'-')}`;
   return `<article class="card" id="${cardId}" data-group="${group}" data-selected="${p.id}"><div class="product-media" id="media-${p.id}"><span class="badge">${badgeLabel}</span><span class="hover-label">Hover — View back</span><img class="front" src="${p.front}" alt="${p.name} ${p.variant} front"><img class="back" src="${p.back}" alt="${p.name} ${p.variant} back"></div><div class="product-info"><div class="row"><div><div class="title">${p.name}</div><div class="meta" id="variant-${p.id}">${p.variant} · 265 GSM</div></div><div class="price">₹1,500</div></div><div class="swatches">${vars.map(v=>`<button class="swatch ${v.id===p.id?'active':''}" title="${v.variant}" onclick="selectVariant('${group}','${v.id}')"><span style="background:${v.color}"></span></button>`).join('')}</div><div class="details"><div class="detail">265 GSM</div><div class="detail">Heavyweight</div><div class="detail">Half Sleeve</div></div><button class="add" onclick="showSizePicker('${cardId}')">Add to bag</button><div class="size-picker" id="sp-${cardId}"><div class="size-label">Select size</div><div class="sizes"><button class="size-btn" onclick="selectSize('${cardId}','S')">S</button><button class="size-btn" onclick="selectSize('${cardId}','M')">M</button><button class="size-btn" onclick="selectSize('${cardId}','L')">L</button><button class="size-btn" onclick="selectSize('${cardId}','XL')">XL</button></div></div><button class="add-confirm" id="confirm-${cardId}" onclick="confirmAddToCart('${cardId}')">Confirm — Add to bag</button></div></article>`;
 }
 
+// drop key → { badge text on card, container to render into }
+const DROP_LABELS={drop01:'Drop 01',onepiece:'One Piece',f1:'F1'};
+const DROP_TARGETS={drop01:'#products-drop01',onepiece:'#products-onepiece',f1:'#products-f1'};
+
 function renderProducts(){
-  const drop01Groups=[...new Set(products.filter(p=>p.drop==='drop01').map(p=>p.group))];
-  const onepieceGroups=[...new Set(products.filter(p=>p.drop==='onepiece').map(p=>p.group))];
-  document.querySelector('#products-drop01').innerHTML=drop01Groups.map(buildCard).join('');
-  document.querySelector('#products-onepiece').innerHTML=onepieceGroups.map(buildCard).join('');
+  Object.entries(DROP_TARGETS).forEach(([drop,sel])=>{
+    const el=document.querySelector(sel);
+    if(!el)return;
+    const groups=[...new Set(products.filter(p=>p.drop===drop).map(p=>p.group))];
+    el.innerHTML=groups.map(buildCard).join('');
+  });
 }
 
 function selectVariant(group,id){
